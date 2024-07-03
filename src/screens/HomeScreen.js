@@ -9,8 +9,8 @@ import { AuthContext } from "../contexts/AuthContext"; // Ensure correct path
 const buttons = [
   { name: "cash-outline", label: "Pay" },
   { name: "arrow-down-circle-outline", label: "Receive" },
-  { name: "swap-horizontal-outline", label: "Transfer" },
-  { name: "time-outline", label: "History" },
+  { name: "arrow-down-outline", label: "Deposit" },
+  { name: "arrow-up-outline", label: "Withdraw" },
 ];
 
 const HomeScreen = () => {
@@ -39,21 +39,35 @@ const HomeScreen = () => {
       </View>
 
       <ScrollView contentContainerStyle={tw`p-4`}>
-        <View style={tw`mb-4 p-4 bg-gray-100 rounded-lg`}>
-          <Text style={tw`text-gray-600`}>Owned amount</Text>
-          <Text style={tw`text-3xl font-bold`}>$41.25</Text>
-          <TouchableOpacity style={tw`mt-4`}>
+        <TouchableOpacity style={tw`mb-2 p-4 bg-gray-100 rounded-lg`}>
+          <View style={tw`pb-12`}>
+            <Text style={tw`text-gray-600`}>Available amount</Text>
+            <Text style={tw`text-3xl font-bold`}>$80.42</Text>
+          </View>
+          <View style={tw`absolute bottom-0 right-0 m-4`}>
             <Text style={tw`text-blue-600 mt-2`}>See full record</Text>
-          </TouchableOpacity>
-        </View>
+          </View>
+        </TouchableOpacity>
 
-        <View style={tw`mb-4 p-4 bg-gray-100 rounded-lg`}>
-          <Text style={tw`text-gray-600`}>Lended amount</Text>
-          <Text style={tw`text-3xl font-bold`}>$0.00</Text>
-          <TouchableOpacity style={tw`mt-4`}>
+        <TouchableOpacity style={tw`mb-2 p-4 bg-gray-100 rounded-lg`}>
+          <View style={tw`pb-8`}>
+            <Text style={tw`text-gray-600`}>Owned amount</Text>
+            <Text style={tw`text-3xl font-bold`}>$400.0</Text>
+          </View>
+          <View style={tw`absolute bottom-0 right-0 m-4`}>
             <Text style={tw`text-blue-600 mt-2`}>See full record</Text>
-          </TouchableOpacity>
-        </View>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={tw`mb-2 p-4 bg-gray-100 rounded-lg`}>
+          <View style={tw`pb-8`}>
+            <Text style={tw`text-gray-600`}>Lended amount</Text>
+            <Text style={tw`text-3xl font-bold`}>$200.0</Text>
+          </View>
+          <View style={tw`absolute bottom-0 right-0 m-4`}>
+            <Text style={tw`text-blue-600 mt-2`}>See full record</Text>
+          </View>
+        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );

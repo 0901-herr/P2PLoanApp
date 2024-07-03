@@ -49,7 +49,7 @@ function App() {
     <SafeAreaProvider>
       <AuthProvider>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Login">
+          <Stack.Navigator initialRouteName="Main">
             <Stack.Screen
               name="Login"
               component={LoginScreen}
@@ -72,7 +72,7 @@ function App() {
             />
             <Stack.Screen
               name="Profile"
-              component={ProfileScreen} // Add ProfileScreen to the Stack Navigator
+              component={ProfileScreen}
               options={{
                 headerBackTitleVisible: false,
                 headerTintColor: "black",
