@@ -1,3 +1,4 @@
+// src/contexts/AuthContext.js
 import React, { createContext, useState, useEffect } from "react";
 import { auth } from "../../firebase";
 import {
@@ -7,6 +8,7 @@ import {
   onAuthStateChanged,
   updateProfile,
 } from "firebase/auth";
+import { addUser, getUser } from "../services/userService";
 
 const AuthContext = createContext();
 
@@ -14,9 +16,15 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        setUser(user);
+        const userData = await getUser(user.uid);
+        if (userData) {
+          setUser(userData);
+        } else {
+          // Handle case where user doc doesn't exist if necessary
+          setUser(null);
+        }
       } else {
         setUser(null);
       }
@@ -40,15 +48,38 @@ const AuthProvider = ({ children }) => {
         password
       );
       await updateProfile(userCredential.user, { displayName: username });
-      setUser({ ...userCredential.user, displayName: username });
+
+      const userData = {
+        userId: userCredential.user.uid,
+        displayName: username,
+        email: email,
+        tier: 3,
+        creditScore: 20,
+        availableAmount: 1000,
+        transactionRecord: [],
+        loanedTo: [],
+        loanedFrom: [],
+        loanedAmount: 0,
+        lendedAmount: 0,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      };
+
+      console.log("userData:", userData);
+
+      await addUser(userCredential.user.uid, userData);
+
+      setUser(userData);
     } catch (error) {
       console.error("Signup Error:", error);
+      throw error;
     }
   };
 
   const logout = async () => {
     try {
       await signOut(auth);
+      setUser(null); // Clear user state on logout
     } catch (error) {
       console.error("Logout Error:", error);
     }

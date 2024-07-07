@@ -7,8 +7,12 @@ import HomeScreen from "./src/screens/HomeScreen";
 import LoginScreen from "./src/screens/LoginScreen";
 import SignupScreen from "./src/screens/SignupScreen";
 import TransactionScreen from "./src/screens/TransactionScreen";
-import RecordsScreen from "./src/screens/RecordsScreen";
-import ProfileScreen from "./src/screens/ProfileScreen"; // Import ProfileScreen
+import StatsScreen from "./src/screens/StatsScreen";
+import ProfileScreen from "./src/screens/ProfileScreen";
+import RecordsListScreen from "./src/screens/RecordsListScreen";
+import RecordDetailScreen from "./src/screens/RecordDetailScreen";
+import SpendingRecordsScreen from "./src/screens/SpendingRecordsScreen";
+import TierInfoScreen from "./src/screens/TierInfoScreen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { AuthProvider } from "./src/contexts/AuthContext";
 
@@ -26,8 +30,8 @@ function MyTabs() {
             iconName = "home-outline";
           } else if (route.name === "Transaction") {
             iconName = "swap-horizontal-outline";
-          } else if (route.name === "Records") {
-            iconName = "list-outline";
+          } else if (route.name === "Statistics") {
+            iconName = "trending-up-outline";
           }
 
           return <Ionicons name={iconName} size={size} color={color} />;
@@ -39,7 +43,7 @@ function MyTabs() {
     >
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Transaction" component={TransactionScreen} />
-      <Tab.Screen name="Records" component={RecordsScreen} />
+      <Tab.Screen name="Statistics" component={StatsScreen} />
     </Tab.Navigator>
   );
 }
@@ -76,7 +80,49 @@ function App() {
               options={{
                 headerBackTitleVisible: false,
                 headerTintColor: "black",
-                // headerTransparent: true,
+              }}
+            />
+            <Stack.Screen
+              name="RecordsList"
+              component={RecordsListScreen}
+              options={({ route }) => ({
+                headerBackTitle: "",
+                headerBackTitleVisible: false,
+                headerTintColor: "black",
+                headerTitle: route.params.recordType,
+              })}
+            />
+            <Stack.Screen
+              name="RecordDetail"
+              component={RecordDetailScreen}
+              options={({ route }) => ({
+                headerBackTitle: "",
+                headerBackTitleVisible: false,
+                headerTintColor: "black",
+                headerTitle:
+                  route.params.recordType === "Loan History"
+                    ? "Loan Details"
+                    : "Lending Details",
+              })}
+            />
+            <Stack.Screen
+              name="SpendingRecords"
+              component={SpendingRecordsScreen}
+              options={{
+                headerBackTitle: "",
+                headerBackTitleVisible: false,
+                headerTintColor: "black",
+                headerTitle: "Spendings History",
+              }}
+            />
+            <Stack.Screen
+              name="TierInfo"
+              component={TierInfoScreen}
+              options={{
+                headerBackTitle: "",
+                headerBackTitleVisible: false,
+                headerTintColor: "black",
+                headerTitle: "Tier Information",
               }}
             />
           </Stack.Navigator>

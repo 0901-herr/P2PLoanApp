@@ -9,7 +9,7 @@ const ProfileIcon = () => {
 
   return (
     <TouchableOpacity
-      style={tw`w-12 h-12 bg-white border border-gray-300 rounded-full justify-center items-center`}
+      style={tw`w-12 h-12 bg-white border border-gray-200 rounded-full justify-center items-center`}
       onPress={() => navigation.navigate("Profile")}
     >
       <Ionicons name="person" size={20} color="black" />

@@ -1,13 +1,5 @@
 import React, { useState, useContext } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  ScrollView,
-  Image,
-  Button,
-} from "react-native";
+import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import tw from "twrnc";
 import { Ionicons } from "@expo/vector-icons";
@@ -24,29 +16,23 @@ const SignupScreen = ({ navigation }) => {
   const handleSignup = async () => {
     try {
       await signup(email, password, name);
-      navigation.replace("Login"); // Navigate to Main tabs
+      navigation.replace("Login");
     } catch (error) {
       setError(error.message);
     }
   };
 
+  const isButtonDisabled = name === "" || email === "" || password === "";
+
   return (
-    <SafeAreaView style={tw`flex-1 bg-white py-6 px-7`}>
-      {/* <View style={tw`items-center mb-6`}> */}
-      {/* <Image
-          source={require("../../assets/signup-image.png")}
-          style={tw`w-full h-48`}
-          resizeMode="contain"
-        /> */}
-      {/* </View> */}
+    <SafeAreaView style={tw`flex-1 bg-white p-6`}>
       <Text style={tw`text-3xl font-bold mt-6 mb-4`}>Sign up</Text>
 
-      {/* <ScrollView> */}
       <View style={tw`mb-4`}>
         <Text style={tw`text-gray-600`}>Name</Text>
         <TextInput
           style={[
-            tw`border border-gray-300 p-3.5 rounded-xl mt-2`,
+            tw`border border-gray-200 p-4 rounded-xl mt-2`,
             { fontSize: 16 },
           ]}
           placeholder="Name"
@@ -59,7 +45,7 @@ const SignupScreen = ({ navigation }) => {
         <Text style={tw`text-gray-600`}>Email</Text>
         <TextInput
           style={[
-            tw`border border-gray-300 p-3.5 rounded-xl mt-2`,
+            tw`border border-gray-200 p-4 rounded-xl mt-2`,
             { fontSize: 16 },
           ]}
           placeholder="Email"
@@ -72,7 +58,7 @@ const SignupScreen = ({ navigation }) => {
       <View style={tw`mb-4`}>
         <Text style={tw`text-gray-600`}>Password</Text>
         <View
-          style={tw`flex-row items-center border border-gray-300 rounded-xl mt-2 p-3.5`}
+          style={tw`flex-row items-center border border-gray-200 rounded-xl mt-2 p-4`}
         >
           <TextInput
             style={[tw`flex-1`, { fontSize: 16 }]}
@@ -92,13 +78,24 @@ const SignupScreen = ({ navigation }) => {
       </View>
 
       <TouchableOpacity
-        style={tw`bg-black rounded-lg py-3 my-4`}
+        style={[
+          tw`rounded-lg py-3 my-4`,
+          isButtonDisabled ? tw`bg-gray-300` : tw`bg-black`,
+        ]}
         onPress={handleSignup}
+        disabled={isButtonDisabled}
       >
-        <Text style={tw`text-white text-center text-lg`}>Continue</Text>
+        <Text
+          style={[
+            tw`text-center text-lg`,
+            isButtonDisabled ? tw`text-gray-500` : tw`text-white`,
+          ]}
+        >
+          Continue
+        </Text>
       </TouchableOpacity>
 
-      {error ? <Text>{error}</Text> : null}
+      {error ? <Text style={tw`text-red-500 text-center`}>{error}</Text> : null}
 
       <View style={tw`flex-row justify-center`}>
         <Text style={tw`text-gray-600`}>Already have an account? </Text>
@@ -106,7 +103,6 @@ const SignupScreen = ({ navigation }) => {
           <Text style={tw`text-blue-600`}>Log in</Text>
         </TouchableOpacity>
       </View>
-      {/* </ScrollView> */}
     </SafeAreaView>
   );
 };
