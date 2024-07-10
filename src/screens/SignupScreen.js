@@ -26,7 +26,7 @@ const SignupScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={tw`flex-1 bg-white p-6`}>
-      <Text style={tw`text-3xl font-bold mt-6 mb-4`}>Sign up</Text>
+      <Text style={tw`text-3xl font-semibold mt-6 mb-4`}>Sign up</Text>
 
       <View style={tw`mb-4`}>
         <Text style={tw`text-gray-600`}>Name</Text>

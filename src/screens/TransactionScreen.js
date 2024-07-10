@@ -114,7 +114,7 @@ const TransactionScreen = ({ navigation }) => {
             size={24}
             style={{ marginRight: 10 }}
           />
-          <Text style={{ fontSize: 18, fontWeight: "bold" }}>Lend</Text>
+          <Text style={tw`text-lg font-semibold`}>Lend</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -126,7 +126,7 @@ const TransactionScreen = ({ navigation }) => {
             size={24}
             style={{ marginRight: 10 }}
           />
-          <Text style={{ fontSize: 18, fontWeight: "bold" }}>Loan</Text>
+          <Text style={tw`text-lg font-semibold`}>Loan</Text>
         </TouchableOpacity>
       </View>
 

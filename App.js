@@ -13,6 +13,8 @@ import RecordsListScreen from "./src/screens/RecordsListScreen";
 import RecordDetailScreen from "./src/screens/RecordDetailScreen";
 import SpendingRecordsScreen from "./src/screens/SpendingRecordsScreen";
 import TierInfoScreen from "./src/screens/TierInfoScreen";
+import PayScreen from "./src/screens/PayScreen";
+import TransferScreen from "./src/screens/TransferScreen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { AuthProvider } from "./src/contexts/AuthContext";
 
@@ -123,6 +125,26 @@ function App() {
                 headerBackTitleVisible: false,
                 headerTintColor: "black",
                 headerTitle: "Tier Information",
+              }}
+            />
+            <Stack.Screen
+              name="Pay"
+              component={PayScreen}
+              options={{
+                headerBackTitle: "",
+                headerBackTitleVisible: false,
+                headerTintColor: "black",
+                headerTitle: "Pay",
+              }}
+            />
+            <Stack.Screen
+              name="Transfer"
+              component={TransferScreen}
+              options={{
+                headerBackTitle: "",
+                headerBackTitleVisible: false,
+                headerTintColor: "black",
+                headerTitle: "Transfer",
               }}
             />
           </Stack.Navigator>

@@ -62,7 +62,9 @@ const Counter = ({
         </Text>
       </TouchableOpacity>
 
-      <Text style={tw`text-center text-lg w-12 mx-4`}>{value}</Text>
+      <Text style={tw`text-center text-lg font-semibold w-12 mx-4`}>
+        {value}
+      </Text>
 
       <TouchableOpacity
         style={tw`w-10 h-10 rounded-full border border-gray-200 justify-center items-center`}

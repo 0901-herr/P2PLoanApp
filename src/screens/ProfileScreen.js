@@ -29,13 +29,13 @@ const ProfileScreen = ({ navigation }) => {
         <View
           style={tw`w-16 h-16 bg-white border border-gray-200 rounded-full justify-center items-center`}
         >
-          <Text style={tw`text-2xl font-bold`}>
+          <Text style={tw`text-2xl font-semibold`}>
             {user?.displayName[0].toUpperCase() ?? "U"}
           </Text>
         </View>
 
         <View style={tw`pl-4`}>
-          <Text style={tw`text-lg font-bold`}>
+          <Text style={tw`text-lg font-semibold`}>
             {user?.displayName ?? "Unknown"}
           </Text>
           <Text style={tw`text-base text-gray-500`}>
@@ -51,12 +51,12 @@ const ProfileScreen = ({ navigation }) => {
       >
         <View style={tw`flex-row justify-between items-center`}>
           <View>
-            <Text style={tw`text-lg font-bold`}>
+            <Text style={tw`text-lg font-semibold`}>
               You are at{" "}
               <Text style={tw`text-blue-600`}>Tier {currentTier}</Text>
             </Text>
             <Text style={tw`text-base text-gray-500 pb-2`}>
-              Your base interest is 5%
+              Your current credit score is {user?.creditScore}.
             </Text>
           </View>
         </View>
@@ -64,7 +64,7 @@ const ProfileScreen = ({ navigation }) => {
         {/* Horizontal Bar Chart */}
         <View style={tw`mt-4`}>
           <View style={tw`flex-row justify-between mb-1`}>
-            <Text style={tw`text-base font-bold`}>Tier Levels</Text>
+            <Text style={tw`text-base font-semibold`}>Tier Levels</Text>
             <Text style={tw`text-base`}>Progress</Text>
           </View>
           <View style={tw`flex-row`}>

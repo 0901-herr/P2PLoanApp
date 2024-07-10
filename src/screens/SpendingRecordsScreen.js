@@ -76,12 +76,14 @@ const SpendingRecordsScreen = () => {
 
   return (
     <View style={tw`flex-1 bg-white px-4 pb-8`}>
-      {/* <Text style={tw`text-2xl font-bold mb-4`}>Spending Records</Text> */}
+      {/* <Text style={tw`text-2xl font-semibold mb-4`}>Spending Records</Text> */}
 
       <ScrollView style={tw`pb-12`} showsVerticalScrollIndicator={false}>
         {sortedData.map((item, index) => (
           <View key={index} style={tw`py-4 border-b border-gray-200`}>
-            <Text style={tw`text-lg font-bold text-gray-900`}>{item.date}</Text>
+            <Text style={tw`text-base font-semibold text-gray-900`}>
+              {item.date}
+            </Text>
             {item.status ? (
               <Text style={tw`text-base text-gray-500`}>
                 {item.status}: {item.description}

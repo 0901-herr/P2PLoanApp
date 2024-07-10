@@ -56,9 +56,17 @@ const StatsScreen = () => {
         <Text style={{ fontSize: 24, fontWeight: "bold" }}>Statistics</Text>
 
         {/* <View style={tw`pt-4`}>
-          <Text style={tw`text-3xl font-bold text-gray-900 pb-2`}>32.4k</Text>
+          <Text style={tw`text-3xl font-semibold text-gray-900 pb-2`}>32.4k</Text>
           <Text style={tw`text-base text-gray-500`}>Users this week</Text>
         </View> */}
+
+        <View style={tw`flex h-9/10 px-5 justify-center items-center `}>
+          <Text style={tw`text-base text-gray-500`}>
+            This page will soon feature detailed statistics on your earnings
+            from lending and loans, offering valuable insights into your
+            spending habits and financial activity.
+          </Text>
+        </View>
 
         {/* <View style={tw`flex flex-row items-center pb-4`}>
           <Text style={tw`text-base font-semibold text-green-500`}>12%</Text>

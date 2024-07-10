@@ -26,7 +26,7 @@ const LoginScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={tw`flex-1 bg-white p-6`}>
       <View style={tw`items-center mb-6`}></View>
-      <Text style={tw`text-3xl font-bold mb-4`}>Log in</Text>
+      <Text style={tw`text-3xl font-semibold mb-4`}>Log in</Text>
 
       <View style={tw`mb-4`}>
         <Text style={tw`text-gray-600`}>Email</Text>

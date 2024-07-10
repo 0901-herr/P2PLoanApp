@@ -4,20 +4,20 @@ import tw from "twrnc";
 
 const loanData = [
   {
+    id: "1",
+    title: "Record 1",
+    amount: "$100",
+    date: "Mon 01 July",
+    borrower: "John Lee",
+    status: "Ongoing",
+  },
+  {
     id: "2",
     title: "Record 2",
     amount: "$200",
     date: "Tue 02 July",
     borrower: "Jane Smith",
     status: "Overdue",
-  },
-  {
-    id: "1",
-    title: "Record 1",
-    amount: "$100",
-    date: "Mon 01 July",
-    borrower: "John Lee",
-    status: "Settled",
   },
 ];
 
@@ -60,6 +60,11 @@ const getStatusStyles = (status) => {
         backgroundColor: "#FFF4E5",
         color: "orange",
       };
+    case "Ongoing":
+      return {
+        backgroundColor: "#E6F4EA",
+        color: "green",
+      };
     case "Overdue":
       return {
         backgroundColor: "#FEE2E2",
@@ -89,10 +94,15 @@ const RecordsListScreen = ({ route, navigation }) => {
               key={index}
               onPress={() => openDetailScreen(item, recordType)}
               style={tw`py-4 border-b border-gray-200`}
+              disabled={item.status == "Pending"}
             >
-              <Text style={tw`text-lg font-bold`}>{item.date}</Text>
+              <Text style={tw`text-base font-semibold`}>{item.date}</Text>
               <Text style={tw`text-base text-gray-500`}>
-                {item.borrower ? `From ${item.borrower}` : "No Borrower Yet"}
+                {item.borrower
+                  ? `${recordType == "Lending History" ? "To" : "From"} ${
+                      item.borrower
+                    }`
+                  : "No Borrower Yet"}
               </Text>
 
               <View style={tw`flex-row justify-between mt-2`}>
@@ -107,7 +117,7 @@ const RecordsListScreen = ({ route, navigation }) => {
                 >
                   <Text
                     style={[
-                      tw`text-sm font-bold`,
+                      tw`text-sm font-semibold`,
                       {
                         color: getStatusStyles(item.status).color,
                       },

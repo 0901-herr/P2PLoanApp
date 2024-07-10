@@ -15,8 +15,8 @@ import ProfileIcon from "../components/ProfileIcon";
 import { useFocusEffect } from "@react-navigation/native";
 
 const buttons = [
-  { name: "cash-outline", label: "Pay" },
-  { name: "arrow-down-circle-outline", label: "Receive" },
+  { name: "cash-outline", label: "Pay", screen: "Pay" },
+  { name: "scan", label: "Transfer", screen: "Transfer" },
   { name: "arrow-down-outline", label: "Deposit" },
   { name: "arrow-up-outline", label: "Withdraw" },
 ];
@@ -71,7 +71,15 @@ const HomeScreen = ({ navigation }) => {
       {/* Buttons */}
       <View style={tw`flex-row justify-around mt-2 mb-4`}>
         {buttons.map((button, index) => (
-          <TouchableOpacity key={index} style={tw`items-center`}>
+          <TouchableOpacity
+            key={index}
+            style={tw`items-center`}
+            onPress={
+              button.screen
+                ? () => navigation.navigate(button.screen)
+                : () => {}
+            }
+          >
             <View
               style={tw`w-14 h-14 bg-gray-200 rounded-full justify-center items-center`}
             >
@@ -88,11 +96,13 @@ const HomeScreen = ({ navigation }) => {
           onPress={() => navigation.navigate("SpendingRecords")}
         >
           <View style={tw`h-1/3`}>
-            <Text style={tw`text-gray-600`}>Available amount</Text>
-            <Text style={tw`text-2xl font-bold pt-1`}>${availableAmount}</Text>
+            <Text style={tw`text-gray-600`}>Available Balance</Text>
+            <Text style={tw`text-2xl font-semibold pt-1`}>
+              ${availableAmount}
+            </Text>
           </View>
           <View style={tw`absolute bottom-0 right-0 m-4`}>
-            <Text style={tw`text-blue-600 mt-2`}>See spendings history</Text>
+            <Text style={tw`text-blue-600 mt-2`}>View Spendings History</Text>
           </View>
         </TouchableOpacity>
 
@@ -105,11 +115,11 @@ const HomeScreen = ({ navigation }) => {
           }
         >
           <View style={tw`pb-8`}>
-            <Text style={tw`text-gray-600`}>Loaned amount</Text>
-            <Text style={tw`text-2xl font-bold pt-1`}>${loanedAmount}</Text>
+            <Text style={tw`text-gray-600`}>Borrowed Amount</Text>
+            <Text style={tw`text-2xl font-semibold pt-1`}>${loanedAmount}</Text>
           </View>
           <View style={tw`absolute bottom-0 right-0 m-4`}>
-            <Text style={tw`text-blue-600 mt-2`}>See loan history</Text>
+            <Text style={tw`text-blue-600 mt-2`}>View Loan History</Text>
           </View>
         </TouchableOpacity>
 
@@ -122,11 +132,11 @@ const HomeScreen = ({ navigation }) => {
           }
         >
           <View style={tw`pb-8`}>
-            <Text style={tw`text-gray-600`}>Lended amount</Text>
-            <Text style={tw`text-2xl font-bold pt-1`}>${lendedAmount}</Text>
+            <Text style={tw`text-gray-600`}>Lended Amount</Text>
+            <Text style={tw`text-2xl font-semibold pt-1`}>${lendedAmount}</Text>
           </View>
           <View style={tw`absolute bottom-0 right-0 m-4`}>
-            <Text style={tw`text-blue-600 mt-2`}>See lending history</Text>
+            <Text style={tw`text-blue-600 mt-2`}>View Lending History</Text>
           </View>
         </TouchableOpacity>
       </ScrollView>
